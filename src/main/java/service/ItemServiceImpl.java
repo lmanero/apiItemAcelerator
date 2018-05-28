@@ -9,13 +9,18 @@ import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class ItemServiceImpl implements ItemService{
@@ -32,7 +37,20 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public Collection<Item> getItems() {
-        return null;
+        SearchRequest searchRequest = new SearchRequest(index);
+        searchRequest.types(type);
+        SearchResponse searchResponse;
+        ArrayList<Item> response = new ArrayList<>();
+        try {
+            searchResponse = client.search(searchRequest);
+            SearchHits hits = searchResponse.getHits();
+            for (SearchHit hit : hits) {
+                response.add(new Gson().fromJson(hit.getSourceAsString(), Item.class));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 
     @Override
@@ -59,7 +77,6 @@ public class ItemServiceImpl implements ItemService{
             UpdateResponse updateResponse;
             try {
                 updateResponse = client.update(request);
-                System.out.println(updateResponse.getResult());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,7 +91,6 @@ public class ItemServiceImpl implements ItemService{
         DeleteRequest request = new DeleteRequest(index, type, id);
         try {
             DeleteResponse deleteResponse = client.delete(request);
-            System.out.println(deleteResponse.getResult());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,13 +99,11 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public void addItem(Item item) {
-
         IndexRequest request = new IndexRequest(index, type, item.getId());
         request.source(new Gson().toJson(item), XContentType.JSON);
         IndexResponse indexResponse;
         try {
             indexResponse = client.index(request);
-            System.out.println(indexResponse.getResult());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -31,9 +31,13 @@ public class ItemController {
             return new Gson().toJson(new StandardResponse(StatusResponse.SUCCESS, new Gson()
                     .toJsonTree(itemService.getItem(request.params("id")))));
         });
+        get("/items", (request, response) -> {
+            response.type("application/json");
+            return new Gson().toJson(new StandardResponse(StatusResponse.SUCCESS, new Gson()
+                    .toJsonTree(itemService.getItems())));
+        });
         put("/items/:id", (request, response) -> {
             response.type("application/json");
-
             //validar si existe
             Item toEdit = new Gson().fromJson(request.body(), Item.class);
             Item editItem = itemService.updateItem(toEdit);

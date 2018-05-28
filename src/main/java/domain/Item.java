@@ -17,11 +17,11 @@ public class Item {
     private String videoId;
     private String warranty;
     //es una lista de obj picture CAMBIAR
-    private List<String> pictures;
+    private List<Picture> pictures;
 
     public Item(){};
 
-    public Item(String id, String title, String categoryId, double price, String currencyId, int availableQuantity, String buyingMode, String listingTypeId, String condition, String description, String videoId, String warranty, List<String> pictures) {
+    public Item(String id, String title, String categoryId, double price, String currencyId, int availableQuantity, String buyingMode, String listingTypeId, String condition, String description, String videoId, String warranty, List<Picture> pictures) {
         this.id = id;
         this.title = title;
         this.categoryId = categoryId;
@@ -133,11 +133,11 @@ public class Item {
         this.warranty = warranty;
     }
 
-    public List<String> getPictures() {
+    public List<Picture> getPictures() {
         return pictures;
     }
 
-    public void setPictures(List<String> pictures) {
+    public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
 }
