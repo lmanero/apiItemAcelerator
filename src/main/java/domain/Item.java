@@ -16,7 +16,6 @@ public class Item {
     private String description;
     private String videoId;
     private String warranty;
-    //es una lista de obj picture CAMBIAR
     private List<Picture> pictures;
 
     public Item(){};

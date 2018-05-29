@@ -1,111 +1,64 @@
 package service;
 
-import com.google.gson.Gson;
+import dao.ItemDao;
 import domain.Item;
-import org.apache.http.HttpHost;
-import org.elasticsearch.action.delete.DeleteRequest;
-import org.elasticsearch.action.delete.DeleteResponse;
-import org.elasticsearch.action.get.GetRequest;
-import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.update.UpdateRequest;
-import org.elasticsearch.action.update.UpdateResponse;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import exception.ElasticException;
+import exception.ItemException;
 import java.util.Collection;
 
 public class ItemServiceImpl implements ItemService{
 
-    RestHighLevelClient client;
-    String index = "tpitem";
-    String type = "items";
+    final ItemDao itemDao;
 
     public ItemServiceImpl() {
-        client =new RestHighLevelClient(
-                RestClient.builder(
-                        new HttpHost("localhost", 9200, "http")));
+        this.itemDao = new ItemDao();
     }
 
     @Override
-    public Collection<Item> getItems() {
-        SearchRequest searchRequest = new SearchRequest(index);
-        searchRequest.types(type);
-        SearchResponse searchResponse;
-        ArrayList<Item> response = new ArrayList<>();
+    public Collection<Item> getItems() throws ItemException {
         try {
-            searchResponse = client.search(searchRequest);
-            SearchHits hits = searchResponse.getHits();
-            for (SearchHit hit : hits) {
-                response.add(new Gson().fromJson(hit.getSourceAsString(), Item.class));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            return itemDao.getItems();
+        } catch (ElasticException e) {
+            throw new ItemException("Error al intentar recuperar todos los items");
         }
-        return response;
     }
 
+
     @Override
-    public Item getItem(String id) {
-        Item response = null;
-        GetRequest getRequest = new GetRequest(index, type, id);
+    public Item getItem(String id) throws ItemException {
         try {
-            GetResponse elasticResponse = client.get(getRequest);
-            response = new Gson().fromJson(elasticResponse.getSourceAsString() , Item.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+            return itemDao.getItem(id);
+        } catch (ElasticException e) {
+            throw new ItemException("Error al intentar recuperar el item");
         }
-        return response;
     }
 
     @Override
-    public Item updateItem(Item forEdit){
+    public Item updateItem(Item forEdit) throws ItemException {
         try {
-            if (forEdit.getId() == null)
-                throw new Exception();
-
-            UpdateRequest request = new UpdateRequest(index, type, forEdit.getId());
-            request.doc(new Gson().toJson(forEdit), XContentType.JSON);
-            UpdateResponse updateResponse;
-            try {
-                updateResponse = client.update(request);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return forEdit;
+            if (this.getItem(forEdit.getId()) == null)
+                throw new ItemException("El item no existe en la base de datos");
+            return itemDao.updateItem(forEdit);
         } catch (Exception ex) {
-            return null;
+            throw new ItemException("Error al intentar recuperar el item");
         }
     }
 
     @Override
-    public void deleteItem(String id) {
-        DeleteRequest request = new DeleteRequest(index, type, id);
+    public void deleteItem(String id) throws ItemException {
         try {
-            DeleteResponse deleteResponse = client.delete(request);
-        } catch (IOException e) {
-            e.printStackTrace();
+            itemDao.deleteItem(id);
+        } catch (ElasticException e) {
+            throw new ItemException("Error al intentar eliminar el item");
         }
-
     }
 
     @Override
-    public void addItem(Item item) {
-        IndexRequest request = new IndexRequest(index, type, item.getId());
-        request.source(new Gson().toJson(item), XContentType.JSON);
-        IndexResponse indexResponse;
+    public void addItem(Item item) throws ItemException {
         try {
-            indexResponse = client.index(request);
-        } catch (IOException e) {
-            e.printStackTrace();
+            itemDao.addItem(item);
+        } catch (ElasticException e) {
+            throw new ItemException("Error al intentar guardar el item");
         }
     }
 

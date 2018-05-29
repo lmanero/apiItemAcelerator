@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Listado items</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<h1>Listado de items:</h1>
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>Título:</td>
+        <td>Descripción:</td>
+        <td>Opciones</td>
+    </tr>
+    #foreach( $item in $items )
+        <tr>
+            <td>$item.id</td>
+            <td>$item.title</td>
+            <td>$item.description</td>
+            <td>
+                <button onclick="deleteItem('$item.id')">Eliminar</button>
+                <button>Editar</button>
+            </td>
+        </tr>
+    #end
+</table>
+
+<script language="javascript">
+    function deleteItem(id) {
+        $.ajax({
+            url: '/items/'+id,
+            dataType: 'json',
+            type: 'delete',
+            contentType: 'application/json',
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                window.location.replace("http://localhost:8080/listado-item");
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                //alert("Error al guardar el item");
+            }
+        });
+    }
+</script>
+<body>
+</html>

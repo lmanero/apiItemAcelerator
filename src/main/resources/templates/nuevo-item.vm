@@ -1,0 +1,142 @@
+<html>
+<head>
+    <title>Registrar item</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<h1>Registrar Item:</h1>
+<form id="form" class="form-inline">
+    <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text"
+               class="form-control"
+               id="title"
+               name="title"
+               placeholder="Ingrese el título">
+    </div>
+    <div class="form-group">
+        <label for="categoryId">Id de categoría</label>
+        <input type="text"
+               class="form-control"
+               id="categoryId"
+               name="categoryId"
+               placeholder="Ingrese el id">
+    </div>
+    <div class="form-group">
+        <label for="price">Precio</label>
+        <input type="number"
+               class="form-control"
+               id="price"
+               name="price"
+               placeholder="Ingrese el precio">
+    </div>
+    <div class="form-group">
+        <label for="currencyId">ID de moneda</label>
+        <input type="text"
+               class="form-control"
+               id="currencyId"
+               name="currencyId"
+               placeholder="Ingrese el id">
+    </div>
+    <div class="form-group">
+        <label for="availableQuantity">Stock disponible</label>
+        <input type="number"
+               class="form-control"
+               id="availableQuantity"
+               name="availableQuantity"
+               placeholder="Ingrese el stock">
+    </div>
+    <div class="form-group">
+        <label for="buyingMode">Tipo compra</label>
+        <input type="text"
+               class="form-control"
+               id="buyingMode"
+               name="buyingMode"
+               placeholder="Ingrese el tipo de compra">
+    </div>
+    <div class="form-group">
+        <label for="listingTypeId">listingTypeId</label>
+        <input type="text"
+               class="form-control"
+               id="listingTypeId"
+               name="listingTypeId"
+               placeholder="Ingrese el listingTypeId">
+    </div>
+    <div class="form-group">
+        <label for="condition">condition</label>
+        <input type="text"
+               class="form-control"
+               id="condition"
+               name="condition"
+               placeholder="Ingrese el condition">
+    </div>
+    <div class="form-group">
+        <label for="description">description</label>
+        <input type="text"
+               class="form-control"
+               id="description"
+               name="description"
+               placeholder="Ingrese el description">
+    </div>
+    <div class="form-group">
+        <label for="videoId">videoId</label>
+        <input type="text"
+               class="form-control"
+               id="videoId"
+               name="videoId"
+               placeholder="Ingrese el videoId">
+    </div>
+    <div class="form-group">
+        <label for="warranty">warranty</label>
+        <input type="text"
+               class="form-control"
+               id="warranty"
+               name="warranty"
+               placeholder="Ingrese el warranty">
+    </div>
+    <div class="form-group">
+        <label for="pictures">pictures</label>
+        <input type="text"
+               class="form-control"
+               id="pictures"
+               name="pictures"
+               placeholder="Ingrese el pictures">
+    </div>
+</form>
+
+<button onclick="send()">Registrar</button>
+
+
+<script language="javascript">
+    function send() {
+        $.ajax({
+            url: '/items',
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify( {
+                "title": $('#title').val(),
+                "categoryId": $('#categoryId').val(),
+                "price": $('#price').val(),
+                "currencyId": $('#currencyId').val(),
+                "availableQuantity": $('#availableQuantity').val(),
+                "buyingMode": $('#buyingMode').val(),
+                "listingTypeId": $('#listingTypeId').val(),
+                "condition": $('#condition').val(),
+                "description": $('#description').val(),
+                "videoId": $('#videoId').val(),
+                "warranty": $('#warranty').val(),
+                "pictures": []
+            }),
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                window.location.replace("http://localhost:8080/listado-item");
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+
+            }
+        });
+    }
+</script>
+<body>
+</html>

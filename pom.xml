@@ -49,6 +49,11 @@
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
             <version>6.2.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-template-velocity</artifactId>
+            <version>2.7.1</version>
+        </dependency>
     </dependencies>
 
 
