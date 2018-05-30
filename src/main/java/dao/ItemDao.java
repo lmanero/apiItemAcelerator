@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import domain.Item;
 import exception.ElasticException;
 import org.apache.http.HttpHost;
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -52,6 +53,8 @@ public class ItemDao {
             return response;
         } catch (IOException e) {
             throw new ElasticException("Error al conectar con elasticSearch");
+        }catch(ElasticsearchException e) {
+            throw new ElasticException("Error al intentar obtener los items");
         }
     }
 
@@ -62,9 +65,12 @@ public class ItemDao {
         try {
             GetResponse elasticResponse = client.get(getRequest);
             response = new Gson().fromJson(elasticResponse.getSourceAsString() , Item.class);
+            response.setId(elasticResponse.getId());
             return response;
         } catch (IOException e) {
             throw new ElasticException("Error al conectar con elasticSearch");
+        }catch(ElasticsearchException e) {
+            throw new ElasticException("Error al intentar obtener el item");
         }
     }
 
@@ -77,6 +83,8 @@ public class ItemDao {
             return forEdit;
         } catch (IOException e) {
             throw new ElasticException("Error al conectar con elasticSearch");
+        }catch(ElasticsearchException e) {
+            throw new ElasticException("Error al intentar actualizar el item");
         }
     }
 
@@ -87,6 +95,8 @@ public class ItemDao {
             DeleteResponse deleteResponse = client.delete(request);
         } catch (IOException e) {
             throw new ElasticException("Error al conectar con elasticSearch");
+        } catch(ElasticsearchException e) {
+            throw new ElasticException("Error al intentar eliminar el item");
         }
 
     }
@@ -100,6 +110,8 @@ public class ItemDao {
             indexResponse = client.index(request);
         } catch (IOException e) {
             throw new ElasticException("Error al conectar con elasticSearch");
+        }catch(ElasticsearchException e) {
+            throw new ElasticException("Error al intentar registrar el item");
         }
     }
 

@@ -56,6 +56,8 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public void addItem(Item item) throws ItemException {
         try {
+            if (item == null || item.getTitle() == null || item.getDescription() == null)
+                throw new ItemException("El item no tiene los datos mínimos para ser creado");
             itemDao.addItem(item);
         } catch (ElasticException e) {
             throw new ItemException("Error al intentar guardar el item");

@@ -1,10 +1,10 @@
 <html>
 <head>
-    <title>Registrar item</title>
+    <title>Modifcar item</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<h1>Registrar Item:</h1>
+<h1>Modificar Item:</h1>
 <form id="form" class="form-inline">
     <div class="form-group">
         <label for="title">Título</label>
@@ -12,6 +12,7 @@
                class="form-control"
                id="title"
                name="title"
+               value="$item.title"
                placeholder="Ingrese el título">
     </div>
     <div class="form-group">
@@ -20,6 +21,7 @@
                class="form-control"
                id="categoryId"
                name="categoryId"
+               value="$item.categoryId"
                placeholder="Ingrese el id">
     </div>
     <div class="form-group">
@@ -28,6 +30,7 @@
                class="form-control"
                id="price"
                name="price"
+               value="$item.price"
                placeholder="Ingrese el precio">
     </div>
     <div class="form-group">
@@ -36,6 +39,7 @@
                class="form-control"
                id="currencyId"
                name="currencyId"
+               value="$item.currencyId"
                placeholder="Ingrese el id">
     </div>
     <div class="form-group">
@@ -44,6 +48,7 @@
                class="form-control"
                id="availableQuantity"
                name="availableQuantity"
+               value="$item.availableQuantity"
                placeholder="Ingrese el stock">
     </div>
     <div class="form-group">
@@ -52,6 +57,7 @@
                class="form-control"
                id="buyingMode"
                name="buyingMode"
+               value="$item.buyingMode"
                placeholder="Ingrese el tipo de compra">
     </div>
     <div class="form-group">
@@ -60,6 +66,7 @@
                class="form-control"
                id="listingTypeId"
                name="listingTypeId"
+               value="$item.listingTypeId"
                placeholder="Ingrese el listingTypeId">
     </div>
     <div class="form-group">
@@ -68,6 +75,7 @@
                class="form-control"
                id="condition"
                name="condition"
+               value="$item.condition"
                placeholder="Ingrese la condición">
     </div>
     <div class="form-group">
@@ -76,14 +84,16 @@
                class="form-control"
                id="description"
                name="description"
-               placeholder="Ingrese una description">
+               value="$item.description"
+               placeholder="Ingrese la descripción">
     </div>
     <div class="form-group">
-        <label for="videoId">ID video de youtube</label>
+        <label for="videoId">Id video de youtube</label>
         <input type="text"
                class="form-control"
                id="videoId"
                name="videoId"
+               value="$item.videoId"
                placeholder="Ingrese el Id">
     </div>
     <div class="form-group">
@@ -92,6 +102,7 @@
                class="form-control"
                id="warranty"
                name="warranty"
+               value="$item.warranty"
                placeholder="Ingrese la garantía">
     </div>
     <div class="form-group">
@@ -100,21 +111,23 @@
                class="form-control"
                id="pictures"
                name="pictures"
-               placeholder="Ingrese la url">
+               value="$item.pictures"
+               placeholder="Ingrese la imagen">
     </div>
 </form>
 
-<button onclick="send()">Registrar</button>
+<button onclick="send()">Modificar</button>
 
 
 <script language="javascript">
     function send() {
         $.ajax({
-            url: '/items',
+            url: '/items/' + '$item.id',
             dataType: 'json',
-            type: 'post',
+            type: 'put',
             contentType: 'application/json',
             data: JSON.stringify( {
+                "id": '$item.id',
                 "title": $('#title').val(),
                 "categoryId": $('#categoryId').val(),
                 "price": $('#price').val(),
@@ -125,15 +138,14 @@
                 "condition": $('#condition').val(),
                 "description": $('#description').val(),
                 "videoId": $('#videoId').val(),
-                "warranty": $('#warranty').val(),
-                "pictures": []
+                "warranty": $('#warranty').val()
             }),
             processData: false,
             success: function( data, textStatus, jQxhr ){
                 window.location.replace("http://localhost:8080/listado-item");
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                alert("Error al registrar el item");
+                alert("Error al modificar el item");
             }
         });
     }

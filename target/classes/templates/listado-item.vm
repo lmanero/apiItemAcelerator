@@ -5,21 +5,24 @@
 </head>
 <body>
 <h1>Listado de items:</h1>
+<button onclick="addItem()">Registrar item</button>
 <table>
     <tr>
-        <td>ID:</td>
         <td>Título:</td>
         <td>Descripción:</td>
+        <td>Precio</td>
+        <td>Condición</td>
         <td>Opciones</td>
     </tr>
     #foreach( $item in $items )
         <tr>
-            <td>$item.id</td>
             <td>$item.title</td>
             <td>$item.description</td>
+            <td>$item.price</td>
+            <td>$item.condition</td>
             <td>
                 <button onclick="deleteItem('$item.id')">Eliminar</button>
-                <button>Editar</button>
+                <button onclick="modifyItem('$item.id')">Editar</button>
             </td>
         </tr>
     #end
@@ -37,9 +40,15 @@
                 window.location.replace("http://localhost:8080/listado-item");
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                //alert("Error al guardar el item");
+                alert("Error al eliminar el item");
             }
         });
+    }
+    function modifyItem(id) {
+        window.location.replace("http://localhost:8080/modificar-item/"+id);
+    }
+    function addItem(id) {
+        window.location.replace("http://localhost:8080/nuevo-item");
     }
 </script>
 <body>

@@ -73,7 +73,7 @@ public class ItemController {
             }
         });
 
-        //VIEWS
+        /** ----------------- VIEWS ------------------------ */
         get("/nuevo-item", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             return new VelocityTemplateEngine().render(
@@ -85,6 +85,13 @@ public class ItemController {
             model.put("items", itemService.getItems());
             return new VelocityTemplateEngine().render(
                     new ModelAndView(model, "templates/listado-item.vm")
+            );
+        });
+        get("/modificar-item/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("item", itemService.getItem(req.params("id")));
+            return new VelocityTemplateEngine().render(
+                    new ModelAndView(model, "templates/modificar-item.vm")
             );
         });
     }

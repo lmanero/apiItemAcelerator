@@ -47,7 +47,7 @@
                placeholder="Ingrese el stock">
     </div>
     <div class="form-group">
-        <label for="buyingMode">Tipo compra</label>
+        <label for="buyingMode">Tipo de compra</label>
         <input type="text"
                class="form-control"
                id="buyingMode"
@@ -55,7 +55,7 @@
                placeholder="Ingrese el tipo de compra">
     </div>
     <div class="form-group">
-        <label for="listingTypeId">listingTypeId</label>
+        <label for="listingTypeId">Tipo de listado</label>
         <input type="text"
                class="form-control"
                id="listingTypeId"
@@ -63,44 +63,44 @@
                placeholder="Ingrese el listingTypeId">
     </div>
     <div class="form-group">
-        <label for="condition">condition</label>
+        <label for="condition">Condición</label>
         <input type="text"
                class="form-control"
                id="condition"
                name="condition"
-               placeholder="Ingrese el condition">
+               placeholder="Ingrese la condición">
     </div>
     <div class="form-group">
-        <label for="description">description</label>
+        <label for="description">Descripción</label>
         <input type="text"
                class="form-control"
                id="description"
                name="description"
-               placeholder="Ingrese el description">
+               placeholder="Ingrese una description">
     </div>
     <div class="form-group">
-        <label for="videoId">videoId</label>
+        <label for="videoId">ID video de youtube</label>
         <input type="text"
                class="form-control"
                id="videoId"
                name="videoId"
-               placeholder="Ingrese el videoId">
+               placeholder="Ingrese el Id">
     </div>
     <div class="form-group">
-        <label for="warranty">warranty</label>
+        <label for="warranty">Garantía</label>
         <input type="text"
                class="form-control"
                id="warranty"
                name="warranty"
-               placeholder="Ingrese el warranty">
+               placeholder="Ingrese la garantía">
     </div>
     <div class="form-group">
-        <label for="pictures">pictures</label>
+        <label for="pictures">Imagen</label>
         <input type="text"
                class="form-control"
                id="pictures"
                name="pictures"
-               placeholder="Ingrese el pictures">
+               placeholder="Ingrese la url">
     </div>
 </form>
 
@@ -133,7 +133,7 @@
                 window.location.replace("http://localhost:8080/listado-item");
             },
             error: function( jqXhr, textStatus, errorThrown ){
-
+                alert("Error al registrar el item");
             }
         });
     }
