@@ -4,7 +4,7 @@ Estos ejemplos servirán para trabajar con ítems y realizar búsquedas en la ap
 ---------------------------------------------------------------------------------------------------------------------------
 Recurso:	|	    Tipo:			|			Descripción y ejemplo:
 ---------------------------------------------------------------------------------------------------------------------------
- /items		    	POST			  	Permite el registro de un item 
+ /items		|   	POST			  	Permite el registro de un item 
                               Ejemplo: curl -X POST -H "Content-Type: application/json" -d
                               ‘{
                                 title:"Item de test - No Ofertar",
@@ -19,7 +19,7 @@ Recurso:	|	    Tipo:			|			Descripción y ejemplo:
                                 videoId: "YOUTUBE_ID_HERE",
                                 warranty: "12 months by Ray Ban",
                                 pictures: [
-                                  {"source":"http://upload.wikimedia.org/wikipedia/commons/f/fd/Ray_Ban_Original_Wayfarer.jpg"}
+                                 {"source":"http://upload.wikimedia.org/wikipedia/commons/f/fd/Ray_Ban_Original_Wayfarer.jpg"}
                                 ]
                               }'
                               http://localhost:8080/items
