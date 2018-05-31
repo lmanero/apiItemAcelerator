@@ -25,4 +25,9 @@ VISTAS
     Modificación: http://localhost:8080/modificar-item/{Item_id}
   
   **/ Luego de la eliminación de un item debera refrescar la página para verlo impactado /** 
+  
+  Configuraciones
+------------------------------------------------------------------------------------------------------------------------------
+  
+  Se debe tener corriendo un elasticsearch 9.2 corriendo en el puerto 9200 y el indice "tpitem" creado.
     
