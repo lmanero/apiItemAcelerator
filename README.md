@@ -12,11 +12,11 @@ Estos ejemplos servirán para trabajar con ítems y realizar búsquedas en la ap
 
 RESPUESTAS	
 ------------------------------------------------------------------------------------------------------------------------------
-Errores 
-|Tipo | Status code | Body|
-|:---:|:----------:|:----:|
-|Errror | 200 |{ "status": "ERROR", "message": "No existe un item registrado con ese id" } |
-|Éxito | 200 | { "status": "SUCCESS",  "data": { "id": "OGO7smMBnTeB1l3KCcg7", ... } } |	
+
+| Tipo | Status code | Body |
+| ------------- 	|:-------------:			| :----------------:|
+| Errror | 200 | { "status": "ERROR", "message": "No existe un item registrado con ese id" } |
+| Éxito | 200 | { "status": "SUCCESS",  "data": { "id": "OGO7smMBnTeB1l3KCcg7", ... } } |	
 
 VISTAS
 ------------------------------------------------------------------------------------------------------------------------------
