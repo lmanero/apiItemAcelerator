@@ -15,7 +15,7 @@ RESPUESTAS
 
 | Tipo | Status code | Body |
 | ------------- 	|:-------------:			| :----------------:|
-| Errror | 200 | { "status": "ERROR", "message": "No existe un item registrado con ese id" } |
+| Error | 200 | { "status": "ERROR", "message": "No existe un item registrado con ese id" } |
 | Éxito | 200 | { "status": "SUCCESS",  "data": { "id": "OGO7smMBnTeB1l3KCcg7", ... } } |	
 
 VISTAS
