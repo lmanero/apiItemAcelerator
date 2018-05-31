@@ -1,7 +1,8 @@
 # apiItemAcelerator
 Estos ejemplos servirán para trabajar con ítems y realizar búsquedas en la api:
 
-| Recurso		|	    Tipo			|			Descripción y ejemplo
+| Recurso		|	    Tipo			|			Descripción y ejemplo |
+| ------------- |:-------------:| -----:|
 | /items		   	| POST	| Permite el registro de un item 
                               Ejemplo: curl -X POST -H "Content-Type: application/json" -d
                               ‘{
