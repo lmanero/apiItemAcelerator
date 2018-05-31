@@ -65,7 +65,7 @@ public class ItemDao {
         try {
             GetResponse elasticResponse = client.get(getRequest);
             response = new Gson().fromJson(elasticResponse.getSourceAsString() , Item.class);
-            response.setId(elasticResponse.getId());
+            if (elasticResponse.isExists()) response.setId(elasticResponse.getId());
             return response;
         } catch (IOException e) {
             throw new ElasticException("Error al conectar con elasticSearch");

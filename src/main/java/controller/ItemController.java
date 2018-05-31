@@ -23,18 +23,6 @@ public class ItemController {
         final ItemService itemService = new ItemServiceImpl();
         port(8080);
 
-        post("/items", (request, response) -> {
-            response.type("application/json");
-            Item item = new Gson().fromJson(request.body(), Item.class);
-            try{
-                itemService.addItem(item);
-                return new Gson().
-                        toJson(new StandardResponse(StatusResponse.SUCCESS,"Item guardado"));
-            }catch (ItemException e){
-                return new Gson().toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
-            }
-
-        });
         get("/items/:id", (request, response) -> {
             response.type("application/json");
             try{
@@ -52,6 +40,22 @@ public class ItemController {
             }catch (ItemException e){
                 return new Gson().toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
             }
+        });
+        post("/items", (request, response) -> {
+            response.type("application/json");
+            try{
+                Item item = new Gson().fromJson(request.body(), Item.class);
+                itemService.addItem(item);
+                return new Gson().
+                        toJson(new StandardResponse(StatusResponse.SUCCESS,"Item guardado"));
+            }catch (ItemException e){
+                return new Gson().toJson(new StandardResponse(StatusResponse.ERROR, e.getMessage()));
+            }catch (Exception e){
+                response.status(400);
+                return new Gson().toJson(new StandardResponse(StatusResponse.ERROR, "El formato de los datos enviados no es correcto"));
+
+            }
+
         });
         put("/items/:id", (request, response) -> {
             response.type("application/json");

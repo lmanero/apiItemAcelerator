@@ -27,7 +27,10 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public Item getItem(String id) throws ItemException {
         try {
-            return itemDao.getItem(id);
+            Item response = itemDao.getItem(id);
+            if (response == null)
+                throw new ItemException("No existe un item registrado con ese id");
+            return response;
         } catch (ElasticException e) {
             throw new ItemException("Error al intentar recuperar el item");
         }
@@ -56,7 +59,8 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public void addItem(Item item) throws ItemException {
         try {
-            if (item == null || item.getTitle() == null || item.getDescription() == null)
+            if (item == null || item.getTitle() == null || item.getDescription() == null ||
+                    item.getTitle().length() == 0 || item.getDescription().length() == 0)
                 throw new ItemException("El item no tiene los datos mínimos para ser creado");
             itemDao.addItem(item);
         } catch (ElasticException e) {

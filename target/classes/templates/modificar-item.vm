@@ -1,124 +1,128 @@
 <html>
 <head>
     <title>Modifcar item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<h1>Modificar Item:</h1>
-<form id="form" class="form-inline">
-    <div class="form-group">
-        <label for="title">Título</label>
-        <input type="text"
-               class="form-control"
-               id="title"
-               name="title"
-               value="$item.title"
-               placeholder="Ingrese el título">
-    </div>
-    <div class="form-group">
-        <label for="categoryId">Id de categoría</label>
-        <input type="text"
-               class="form-control"
-               id="categoryId"
-               name="categoryId"
-               value="$item.categoryId"
-               placeholder="Ingrese el id">
-    </div>
-    <div class="form-group">
-        <label for="price">Precio</label>
-        <input type="number"
-               class="form-control"
-               id="price"
-               name="price"
-               value="$item.price"
-               placeholder="Ingrese el precio">
-    </div>
-    <div class="form-group">
-        <label for="currencyId">ID de moneda</label>
-        <input type="text"
-               class="form-control"
-               id="currencyId"
-               name="currencyId"
-               value="$item.currencyId"
-               placeholder="Ingrese el id">
-    </div>
-    <div class="form-group">
-        <label for="availableQuantity">Stock disponible</label>
-        <input type="number"
-               class="form-control"
-               id="availableQuantity"
-               name="availableQuantity"
-               value="$item.availableQuantity"
-               placeholder="Ingrese el stock">
-    </div>
-    <div class="form-group">
-        <label for="buyingMode">Tipo de compra</label>
-        <input type="text"
-               class="form-control"
-               id="buyingMode"
-               name="buyingMode"
-               value="$item.buyingMode"
-               placeholder="Ingrese el tipo de compra">
-    </div>
-    <div class="form-group">
-        <label for="listingTypeId">Tipo de listado</label>
-        <input type="text"
-               class="form-control"
-               id="listingTypeId"
-               name="listingTypeId"
-               value="$item.listingTypeId"
-               placeholder="Ingrese el listingTypeId">
-    </div>
-    <div class="form-group">
-        <label for="condition">Condición</label>
-        <input type="text"
-               class="form-control"
-               id="condition"
-               name="condition"
-               value="$item.condition"
-               placeholder="Ingrese la condición">
-    </div>
-    <div class="form-group">
-        <label for="description">Descripción</label>
-        <input type="text"
-               class="form-control"
-               id="description"
-               name="description"
-               value="$item.description"
-               placeholder="Ingrese la descripción">
-    </div>
-    <div class="form-group">
-        <label for="videoId">Id video de youtube</label>
-        <input type="text"
-               class="form-control"
-               id="videoId"
-               name="videoId"
-               value="$item.videoId"
-               placeholder="Ingrese el Id">
-    </div>
-    <div class="form-group">
-        <label for="warranty">Garantía</label>
-        <input type="text"
-               class="form-control"
-               id="warranty"
-               name="warranty"
-               value="$item.warranty"
-               placeholder="Ingrese la garantía">
-    </div>
-    <div class="form-group">
-        <label for="pictures">Imagen</label>
-        <input type="text"
-               class="form-control"
-               id="pictures"
-               name="pictures"
-               value="$item.pictures"
-               placeholder="Ingrese la imagen">
-    </div>
-</form>
+<div class="container col-lg-6 col-lg-offset-3">
+    <h1>Modificar Item:</h1>
+    <form id="form">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   name="title"
+                   value="$item.title"
+                   placeholder="Ingrese el título">
+        </div>
+        <div class="form-group">
+            <label for="categoryId">Id de categoría</label>
+            <input type="text"
+                   class="form-control"
+                   id="categoryId"
+                   name="categoryId"
+                   value="$item.categoryId"
+                   placeholder="Ingrese el id">
+        </div>
+        <div class="form-group">
+            <label for="price">Precio</label>
+            <input type="number"
+                   class="form-control"
+                   id="price"
+                   name="price"
+                   value="$item.price"
+                   placeholder="Ingrese el precio">
+        </div>
+        <div class="form-group">
+            <label for="currencyId">ID de moneda</label>
+            <input type="text"
+                   class="form-control"
+                   id="currencyId"
+                   name="currencyId"
+                   value="$item.currencyId"
+                   placeholder="Ingrese el id">
+        </div>
+        <div class="form-group">
+            <label for="availableQuantity">Stock disponible</label>
+            <input type="number"
+                   class="form-control"
+                   id="availableQuantity"
+                   name="availableQuantity"
+                   value="$item.availableQuantity"
+                   placeholder="Ingrese el stock">
+        </div>
+        <div class="form-group">
+            <label for="buyingMode">Tipo de compra</label>
+            <input type="text"
+                   class="form-control"
+                   id="buyingMode"
+                   name="buyingMode"
+                   value="$item.buyingMode"
+                   placeholder="Ingrese el tipo de compra">
+        </div>
+        <div class="form-group">
+            <label for="listingTypeId">Tipo de listado</label>
+            <input type="text"
+                   class="form-control"
+                   id="listingTypeId"
+                   name="listingTypeId"
+                   value="$item.listingTypeId"
+                   placeholder="Ingrese el listingTypeId">
+        </div>
+        <div class="form-group">
+            <label for="condition">Condición</label>
+            <input type="text"
+                   class="form-control"
+                   id="condition"
+                   name="condition"
+                   value="$item.condition"
+                   placeholder="Ingrese la condición">
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text"
+                   class="form-control"
+                   id="description"
+                   name="description"
+                   value="$item.description"
+                   placeholder="Ingrese la descripción">
+        </div>
+        <div class="form-group">
+            <label for="videoId">Id video de youtube</label>
+            <input type="text"
+                   class="form-control"
+                   id="videoId"
+                   name="videoId"
+                   value="$item.videoId"
+                   placeholder="Ingrese el Id">
+        </div>
+        <div class="form-group">
+            <label for="warranty">Garantía</label>
+            <input type="text"
+                   class="form-control"
+                   id="warranty"
+                   name="warranty"
+                   value="$item.warranty"
+                   placeholder="Ingrese la garantía">
+        </div>
+        <div class="form-group">
+            <label for="warranty">Imagenes</label>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                #foreach( $picture in $item.pictures )
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="$picture.source" alt="First slide">
+                    </div>
+                #end
+            </div>
+        </div>
+        </div>
+    </form>
 
-<button onclick="send()">Modificar</button>
-
-
+    <button type="button" class="btn btn-success" onclick="send()">Modificar</button>
+</div>
 <script language="javascript">
     function send() {
         $.ajax({
