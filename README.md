@@ -4,7 +4,7 @@ Estos ejemplos servirán para trabajar con ítems y realizar búsquedas en la ap
 ---------------------------------------------------------------------------------------------------------------------------
 Recurso:	|	    Tipo:			|			Descripción y ejemplo:
 ---------------------------------------------------------------------------------------------------------------------------
- /items		|   	POST			  	Permite el registro de un item 
+ /items		   	POST			  	Permite el registro de un item 
                               Ejemplo: curl -X POST -H "Content-Type: application/json" -d
                               ‘{
                                 title:"Item de test - No Ofertar",
