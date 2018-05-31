@@ -29,5 +29,5 @@ VISTAS
   Configuraciones
 ------------------------------------------------------------------------------------------------------------------------------
   
-  Se debe tener corriendo un elasticsearch 9.2 corriendo en el puerto 9200 y el indice "tpitem" creado.
+  Se debe tener corriendo un elasticsearch 6.2 corriendo en el puerto 9200 y el indice "tpitem" creado.
     
