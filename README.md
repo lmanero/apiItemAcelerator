@@ -1,7 +1,7 @@
 # apiItemAcelerator
 Estos ejemplos servirán para trabajar con ítems y realizar búsquedas en la api:
 
-| Recurso		|	    Tipo			|	Descripción y ejemplo 		|
+| Recurso		|	    Tipo			|Descripción y ejemplo |
 | ------------- 	|:-------------:			| -------------------------------------:|
 | /items		   	| POST	| Permite el registro de un item Ejemplo: curl -X POST -H "Content-Type: application/json" -d ‘{  title:"Item de test - No Ofertar",  categoryId:"MLA5529", price:10, currencyId:"ARS", availableQuantity:1, buyingMode:"buy_it_now", listingTypeId:"bronze", condition:"new", description: "Item:,  Ray-Ban WAYFARER Gloss Black. New in Box", videoId: "YOUTUBE_ID_HERE", warranty: "12 months by Ray Ban", pictures: [ {"source":"http://upload.wikimedia.org/wikipedia/commons/f/fd/Ray_Ban_Original_Wayfarer.jpg"} ] }' http://localhost:8080/items |
 | /items/{Item_id}	| GET		| Permite la consulta de un item por id. Ejemplo: curl -X GET http://localhost:8080/items/OGO7smMBnTeB1l3KCcg7 |
